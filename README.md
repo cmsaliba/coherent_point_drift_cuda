@@ -1,10 +1,13 @@
 # coherent_point_drift_cuda
+[![DOI](https://zenodo.org/badge/175826952.svg)](https://zenodo.org/badge/latestdoi/175826952)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Introduction
 This is a CUDA implementation of the Coherent Point Drift (CPD) algorithm for non-rigid point set registration. Given two point sets **X** and **Y** the algorithm finds the transform that aligns **Y** to **X**. The aligned point set is **T = Y + GW**.
 
-**Coherent Point Drift Algorithm**: A. Myronenko and X. Song, "Point Set Registration: Coherent Point Drift," in *IEEE Transactions on Pattern Analysis and Machine Intelligence*, vol. 32, no. 12, pp. 2262-2275, Dec. 2010. doi: 10.1109/TPAMI.2010.46 
+**CUDA Implementation (latest release)**: Chris Saliba. (2019, April 18). Coherent Point Drift CUDA (Version v1.0.0). Zenodo. http://doi.org/10.5281/zenodo.2646522
+
+**Coherent Point Drift Algorithm**: Myronenko, A., & Song, X. (2010). Point set registration: Coherent point drift. IEEE transactions on pattern analysis and machine intelligence, 32(12), 2262-2275.
 
 ## Requirements
 * CUDA capable GPU

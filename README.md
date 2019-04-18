@@ -1,12 +1,10 @@
 # coherent_point_drift_cuda
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Introduction
 This is a CUDA implementation of the Coherent Point Drift (CPD) algorithm for non-rigid point set registration. Given two point sets **X** and **Y** the algorithm finds the transform that aligns **Y** to **X**. The aligned point set is **T = Y + GW**.
 
-Please cite or credit the following:
-
-* **CUDA Implementation**:
-* **Original Algorithm**: A. Myronenko and X. Song, "Point Set Registration: Coherent Point Drift," in *IEEE Transactions on Pattern Analysis and Machine Intelligence*, vol. 32, no. 12, pp. 2262-2275, Dec. 2010. doi: 10.1109/TPAMI.2010.46 
+**Coherent Point Drift Algorithm**: A. Myronenko and X. Song, "Point Set Registration: Coherent Point Drift," in *IEEE Transactions on Pattern Analysis and Machine Intelligence*, vol. 32, no. 12, pp. 2262-2275, Dec. 2010. doi: 10.1109/TPAMI.2010.46 
 
 ## Requirements
 * CUDA capable GPU
@@ -136,4 +134,4 @@ The function *cpd_cuda.m* wraps the mex function in an easy-to-use interface. Ex
 
 ## Notes
 * The `CoherentPointDrift` functions can use single precision or double precision for calculations. On most GPUs double precision performance is significantly slower than single precision and single precision is recommended.
-* When the NVIDIA GPU running the CUDA code is also driving a display, the display driver can timeout causing the CUDA kernels to crash, or the display to freeze. The reason for this is the length of time required to solve the system of equations on the GPU. The kernel is still running, but the driver watchdog timer flags it as unresponsive. The workaround is to plug the display into the integrated graphics output or another graphics card. Alternatively, you can can boot directly into a terminal session, and run the command line program from there. 
+* When the NVIDIA GPU running the CUDA code is also driving a display, the display driver can sometimes timeout causing the CUDA kernels to crash, or the display to freeze. The reason for this is the length of time required to solve the system of equations on the GPU. The kernel is still running, but the driver watchdog timer flags it as unresponsive. The workaround is to plug the display into the integrated graphics output or another graphics card. Alternatively, you can can boot directly into a terminal session, and run the command line program from there. 

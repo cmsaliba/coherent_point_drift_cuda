@@ -64,17 +64,17 @@ Tested on 64-bit Ubuntu 16.04 with version 5.4 of the GNU compilers.
 
 1. Open a terminal and navigate to the root *coherent_point_drift_cuda* directory.
 ```
-C:\>cd path_to_cpd_cuda
+$ cd path_to_cpd_cuda
 ```
 3. Perform an out of source build. 
     * (Optional) Set the `CMAKE_BUILD_TYPE` (default is release).
     * Set the `CPD_CUDA_GENCODE` option to match the compute capability of your hardware (default is `-gencode arch=compute_50,code=sm_50` for compute capability 5.0). 
     * (Optional) Set the `CPD_CUDA_BUILD_CMD` and/or `CPD_CUDA_BUILD_MEX` options to TRUE (default FALSE) to build the command-line program and/or MEX wrapper. 
 ```
-path_to_cpd_cuda>mkdir build
-path_to_cpd_cuda>cd build
-path_to_cpd_cuda/build> cmake -G "Unix Makefiles" -DCPD_CUDA_GENCODE:STRING="-gencode arch=compute_61,code=sm_61" -DCPD_CUDA_BUILD_CMD:BOOL=TRUE ..
-cpd_cuda/build> make
+path_to_cpd_cuda$ mkdir build
+path_to_cpd_cuda$ cd build
+path_to_cpd_cuda/build$ cmake -G "Unix Makefiles" -DCPD_CUDA_GENCODE:STRING="-gencode arch=compute_61,code=sm_61" -DCPD_CUDA_BUILD_CMD:BOOL=TRUE ..
+path_to_cpd_cuda/build$ make
 ``` 
 4. The *cpd_cuda.a* static library is output to *cpd_cuda/lib* and the corresponding header *cpd_cuda.h* is in *cpd_cuda/src*. The command-line executable is output to *cpd_cuda/bin*.
 
@@ -105,7 +105,7 @@ void CoherentPointDrift(double *Xraw, double *Yraw, int M, int N, int D,double w
 * `C`: correspondence vector [M x 1], only calculated if `C != NULL`
 
 **Command Line**   
-With the *cpd_cmd* executable in yourcurrent directory.
+With the *cpd_cmd* executable in your current directory.
 ```
 Usage: ./cpd_cmd [OPTIONS] xpts_file ypts_file tpts_file [correspondence_file]
 

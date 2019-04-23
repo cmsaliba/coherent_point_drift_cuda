@@ -25,7 +25,7 @@ This is a CUDA implementation of the Coherent Point Drift (CPD) algorithm for no
 * **cpd_mex**: MEX wrapper around the cpd_cuda library for use with MATLAB.
 
 ## Windows Builds
-Tested using CUDA 9.0 and CUDA 10.1 using Visual Studio 2015. For the command-line build you can avoid a full installation of the Visual Studio IDE and only install the Visual Studio Build Tools.
+Tested using CUDA 9.0 and CUDA 10.1 with Visual Studio 2015. Other versions of CUDA and Visual Studio should also work as long as they are compatible with eachother. Newer versions of CUDA may require a newer version of CMake to find all of the libraries. For the command-line build you can avoid a full installation of the Visual Studio IDE and only install the Visual Studio Build Tools.
 
 ### Command Line
 1. Open a command prompt window and set up the Visual Studio development tools. The path to bat file will depend on your version of Visual Studio. The `amd64` argument specifies a 64bit target.
@@ -60,7 +60,7 @@ cpd_cuda/build> nmake
 7. The *cpd_cuda.lib* static library is output to *cpd_cuda/lib* and the corresponding header *cpd_cuda.h* is in *cpd_cuda/src*. The command-line executable and the MEX function are output to *cpd_cuda/bin*.
 
 ## Linux Build (Command Line)
-Tested on 64-bit Ubuntu 16.04 with version 5.4 of the GNU compilers.
+Tested on 64-bit Ubuntu 16.04 using CUDA 9.0 and 10.1 with version 5.4 of the GNU compilers. Other versions of Linux, CUDA, and compilers should also work as long as they are compatible with eachother. Newer versions of CUDA may require a newer version of CMake to find all of the libraries.
 
 1. Open a terminal and navigate to the root *coherent_point_drift_cuda* directory.
 ```

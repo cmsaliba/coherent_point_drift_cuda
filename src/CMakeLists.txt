@@ -1,8 +1,7 @@
 # cpd_cuda static library
 set(LIB_FILES cpd_cuda.h cpd_cuda.cpp cpd_cuda_kernels.cuh cpd_cuda_kernels.cu)    
-cuda_add_library(cpd_cuda ${LIB_FILES} STATIC)
-target_include_directories(cpd_cuda PRIVATE ${CUDA_INCLUDE_DIRS})
-target_link_libraries(cpd_cuda ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} ${CUDA_cusolver_LIBRARY})
+add_library(cpd_cuda ${LIB_FILES})
+target_link_libraries(cpd_cuda CUDA::cudart_static CUDA::cublas CUDA::cusolver)
 
 # cpd_cuda command-line program
 if(CPD_CUDA_BUILD_CMD)

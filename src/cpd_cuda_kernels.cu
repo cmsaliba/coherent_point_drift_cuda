@@ -23,7 +23,8 @@ ConstructGKernel (cudafloat *Y, cudafloat *G, cudafloat kbeta2, int M, int D)
 		cudafloat tmp = 0.0;
 		for (int d = 0; d < D; d++)
 		{
-			tmp += pow(Y[i + d*M] - Y[j + d*M], 2);
+            cudafloat val = Y[i + d*M] - Y[j + d*M];
+			tmp += val * val;
 		}
 		G[j*M + i] = exp(kbeta2*tmp);
 	}
@@ -43,7 +44,8 @@ ConstructPKernel (cudafloat *X, cudafloat *T, cudafloat* P, cudafloat ksigma2,
 		cudafloat tmp = 0.0;
 		for (int d = 0; d < D; d++)
 		{
-			tmp += pow(X[j + d*N] - T[i + d*M], 2);
+            cudafloat val = X[j + d*N] - T[i + d*M];
+			tmp += val * val;
 		}
 		P[j*M + i] = exp(ksigma2*tmp);
 	}
@@ -59,7 +61,7 @@ DividePsumKernel (cudafloat *Psum, cudafloat *E, cudafloat kw, int M, int N)
 	{
 		cudafloat tmp = Psum[i];
 		
-		Psum[i] = 1.0 / (tmp + kw);
+		Psum[i] = (cudafloat)1.0 / (tmp + kw);
 		E[i] = -log(tmp + kw);
 	}
 }
@@ -103,7 +105,7 @@ void DividePsumHost(int dimGrid, int dimBlock, cudafloat* d_Psum,
 	cudafloat* d_E, cudafloat w, cudafloat sigma2, int M, int N, int D)
 {
 	cudafloat kw = 
-		(cudafloat)(pow(2.0*M_PI*sigma2, 0.5*D) * (w*M) / ((1.0 - w)*N));
+		(cudafloat)(pow((cudafloat)2.0*M_PI*sigma2, (cudafloat)0.5*D) * (w*M) / ((1.0 - w)*N));
 	DividePsumKernel <<< dimGrid, dimBlock >>> (d_Psum, d_E, kw, M, N);
 }
 

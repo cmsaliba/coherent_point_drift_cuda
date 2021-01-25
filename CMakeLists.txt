@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.14)
-project(cpd_cuda)
+cmake_minimum_required(VERSION 3.18)
+project(cpd_cuda LANGUAGES C CXX CUDA)
 
 set(CMAKE_BUILD_TYPE "Release")
 
@@ -21,18 +21,8 @@ if (OPENMP_FOUND)
 endif()
 
 # CUDA
-find_package(CUDA REQUIRED)
-if(CUDA_FOUND)
-    message(STATUS "Found CUDA " ${CUDA_VERSION_STRING})
-    message(STATUS "CUDA_INCLUDE_DIRS: " ${CUDA_INCLUDE_DIRS})
-    message(STATUS "CUDA_LIBRARIES: " ${CUDA_LIBRARIES})
-    message(STATUS "CUDA_CUBLAS_LIBRARIES: " ${CUDA_CUBLAS_LIBRARIES})
-    message(STATUS "CUDA_cusolver_LIBRARY: " ${CUDA_cusolver_LIBRARY})
-    # set the target compute capability and add to the nvcc compiler options
-    # use position independent code (-fPIC) when the nvcc compiler builds the cpd_cuda lib (needed to link the static lib into the shared lib (the mex file))
-    set(CPD_CUDA_GENCODE "-gencode arch=compute_50,code=sm_50" CACHE STRING "Compute capability of target device.")
-    list(APPEND CUDA_NVCC_FLAGS ${CPD_CUDA_GENCODE} "--compiler-options -fPIC")
-    message(STATUS "CUDA_NVCC_FLAGS: " ${CUDA_NVCC_FLAGS})
+find_package(CUDAToolkit REQUIRED)
+if(CUDAToolkit_FOUND)
 else()
     message(FATAL_ERROR "CUDA not found.")
 endif()
